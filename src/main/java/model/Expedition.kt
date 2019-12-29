@@ -6,6 +6,7 @@ import java.time.LocalDate
 import java.util.*
 
 // an expedition : object which encompass other sub object
+// TODO add JAXB annotations to be able to serialize it as JSON
 data class Expedition(
         val id: UUID,
         val armada: List<Ship> = mutableListOf(),

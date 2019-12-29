@@ -4,5 +4,6 @@ This project contains the base model of this domain.
 
 It contains :
 * in _model/_ the base model classes and enums
-* in _service/_ the interfaces defining the various services available
+* in _dao/_ the interfaces defining the various daos available
+* in _rest/_ the interfaces defining the various rest endpoints available
 * to be completed...
