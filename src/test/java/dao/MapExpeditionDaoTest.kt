@@ -18,7 +18,7 @@ class MapExpeditionDaoTest {
         val id = dao.createOrUpdateExpedition(expedition)
 
         id shouldNotEqual null
-        dao.entries[id]!!.apply {
+        dao.expeditions[id]!!.apply {
             this.id shouldEqual id
             name shouldEqual  "The great expedition"
         }
@@ -28,8 +28,8 @@ class MapExpeditionDaoTest {
         val id2 = dao.createOrUpdateExpedition(expeditionChanged)
 
         id shouldEqual id2
-        dao.entries.size shouldEqual 1
-        dao.entries[id2]!!.apply {
+        dao.expeditions.size shouldEqual 1
+        dao.expeditions[id2]!!.apply {
             this.id shouldEqual id2
             name shouldEqual  "the small expedition"
         }

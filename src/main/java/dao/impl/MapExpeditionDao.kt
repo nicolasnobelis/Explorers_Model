@@ -10,7 +10,7 @@ import java.util.*
  * @see ExpeditionDao
  */
 class MapExpeditionDao : ExpeditionDao {
-    internal val entries = mutableMapOf<UUID, Expedition>()
+    internal val expeditions = mutableMapOf<UUID, Expedition>()
 
     override fun createOrUpdateExpedition(expedition: Expedition): UUID {
         val toStore = expedition.run {
@@ -20,7 +20,7 @@ class MapExpeditionDao : ExpeditionDao {
                 copy(expedition.id)
             }
         }
-        entries[toStore.id!!] = toStore
+        expeditions[toStore.id!!] = toStore
         return toStore.id
     }
 
