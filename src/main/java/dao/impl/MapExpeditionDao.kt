@@ -28,9 +28,7 @@ class MapExpeditionDao : ExpeditionDao {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun deleteExpedition(expeditionId: UUID) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun deleteExpedition(expeditionId: UUID): Boolean = (expeditions.remove(expeditionId) != null)
 
     override fun listExpeditions(): List<Expedition> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

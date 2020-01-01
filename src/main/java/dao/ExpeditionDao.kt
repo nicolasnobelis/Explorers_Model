@@ -11,7 +11,7 @@ interface ExpeditionDao {
 
     fun getExpedition(expeditionId: UUID) : Expedition
 
-    fun deleteExpedition(expeditionId: UUID)
+    fun deleteExpedition(expeditionId: UUID) : Boolean
 
     fun listExpeditions() : List<Expedition>
 

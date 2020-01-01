@@ -34,4 +34,27 @@ class MapExpeditionDaoTest {
             name shouldEqual  "the small expedition"
         }
     }
+
+    @Test
+    fun testDelete() {
+        val dao = MapExpeditionDao()
+
+        //create
+        val expedition = Expedition(name= "The great expedition", country = Country.FRANCE, startDate = LocalDate.now() )
+        val id = dao.createOrUpdateExpedition(expedition)
+
+        id shouldNotEqual null
+
+        dao.expeditions[id]!!.apply {
+            this.id shouldEqual id
+            name shouldEqual  "The great expedition"
+        }
+
+        //delete
+        val result = dao.deleteExpedition(id)
+
+        result shouldEqual true
+
+        dao.expeditions[id] shouldEqual null
+    }
 }
