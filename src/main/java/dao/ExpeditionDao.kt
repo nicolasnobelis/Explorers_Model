@@ -9,7 +9,7 @@ interface ExpeditionDao {
     // if the entity has no id it will be created
     fun createOrUpdateExpedition(expedition: Expedition) : UUID
 
-    fun getExpedition(expeditionId: UUID) : Expedition
+    fun getExpedition(expeditionId: UUID): Expedition?
 
     fun deleteExpedition(expeditionId: UUID) : Boolean
 

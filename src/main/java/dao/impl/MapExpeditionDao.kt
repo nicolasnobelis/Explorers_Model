@@ -15,24 +15,20 @@ class MapExpeditionDao : ExpeditionDao {
     override fun createOrUpdateExpedition(expedition: Expedition): UUID {
         val toStore = expedition.run {
             if (id == null) {
-                copy(UUID.randomUUID())
+                copy(id = UUID.randomUUID())
             } else {
-                copy(expedition.id)
+                copy(id = expedition.id)
             }
         }
         expeditions[toStore.id!!] = toStore
         return toStore.id
     }
 
-    override fun getExpedition(expeditionId: UUID): Expedition {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getExpedition(expeditionId: UUID): Expedition? = expeditions[expeditionId]?.copy()
 
     override fun deleteExpedition(expeditionId: UUID): Boolean = (expeditions.remove(expeditionId) != null)
 
-    override fun listExpeditions(): List<Expedition> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun listExpeditions(): List<Expedition> = expeditions.values.map { it.copy() }
 
     override fun listExpeditions(filter: ExpeditionStatus): List<Expedition> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
