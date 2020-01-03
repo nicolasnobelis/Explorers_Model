@@ -14,7 +14,6 @@ data class Expedition(
         val explorers: List<Explorer> = mutableListOf(),
         val country: Country,
         val budget: Long = 0,
-        val startDate: LocalDate
-) {
-    val status: ExpeditionStatus = ExpeditionStatus.CREATED
-}
+        val startDate: LocalDate,
+        val status: ExpeditionStatus = ExpeditionStatus.CREATED
+)

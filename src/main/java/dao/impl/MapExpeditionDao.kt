@@ -30,7 +30,6 @@ class MapExpeditionDao : ExpeditionDao {
 
     override fun listExpeditions(): List<Expedition> = expeditions.values.map { it.copy() }
 
-    override fun listExpeditions(filter: ExpeditionStatus): List<Expedition> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun listExpeditions(filter: ExpeditionStatus): List<Expedition> =
+            expeditions.values.filter { it.status == filter }.map { it.copy() }
 }

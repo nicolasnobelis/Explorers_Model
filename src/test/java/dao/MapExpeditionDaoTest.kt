@@ -3,6 +3,7 @@ package dao
 import dao.impl.MapExpeditionDao
 import model.Expedition
 import model.enums.Country
+import model.enums.ExpeditionStatus
 import org.amshove.kluent.shouldContain
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotEqual
@@ -100,8 +101,31 @@ class MapExpeditionDaoTest {
         //list
         val expeditions = dao.listExpeditions()
 
+        expeditions.size shouldEqual 2
         // the original objects don't have the ids so we put them in
         expeditions.shouldContain(expedition1.copy(id = id1))
+        expeditions.shouldContain(expedition2.copy(id = id2))
+    }
+
+    @Test
+    fun tesListExpeditionsWithFilter() {
+        val dao = MapExpeditionDao()
+
+        //create
+        val expedition1 = Expedition(name= "The great expedition", country = Country.FRANCE, startDate = LocalDate.now() )
+        val id1 = dao.createOrUpdateExpedition(expedition1)
+        val expedition2 = Expedition(name= "The medium expedition", country = Country.GERMANY,
+                startDate = LocalDate.now(), status = ExpeditionStatus.PENDING )
+        val id2 = dao.createOrUpdateExpedition(expedition2)
+
+        id1 shouldNotEqual null
+        id2 shouldNotEqual null
+
+        //list
+        val expeditions = dao.listExpeditions(ExpeditionStatus.PENDING)
+
+        // the original objects don't have the ids so we put them in
+        expeditions.size shouldEqual 1
         expeditions.shouldContain(expedition2.copy(id = id2))
     }
 }
