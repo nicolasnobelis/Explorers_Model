@@ -9,7 +9,7 @@ import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotEqual
 import org.junit.Test
 import java.time.LocalDate
-import java.util.*
+import java.util.UUID
 
 class MapExpeditionDaoTest {
     @Test
@@ -23,7 +23,7 @@ class MapExpeditionDaoTest {
         id shouldNotEqual null
         dao.expeditions[id]!!.apply {
             this.id shouldEqual id
-            name shouldEqual  "The great expedition"
+            name shouldEqual "The great expedition"
         }
 
         // update
@@ -34,7 +34,7 @@ class MapExpeditionDaoTest {
         dao.expeditions.size shouldEqual 1
         dao.expeditions[id2]!!.apply {
             this.id shouldEqual id2
-            name shouldEqual  "the small expedition"
+            name shouldEqual "the small expedition"
         }
     }
 
@@ -74,7 +74,7 @@ class MapExpeditionDaoTest {
 
         dao.expeditions[id]!!.apply {
             this.id shouldEqual id
-            name shouldEqual  "The great expedition"
+            name shouldEqual "The great expedition"
         }
 
         //delete

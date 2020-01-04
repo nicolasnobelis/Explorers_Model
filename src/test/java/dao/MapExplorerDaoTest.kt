@@ -8,6 +8,7 @@ import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotEqual
 import org.junit.Test
 import java.time.LocalDate
+import java.util.UUID
 
 class MapExplorerDaoTest {
     @Test
@@ -37,5 +38,53 @@ class MapExplorerDaoTest {
             name shouldEqual "Jacques Cartier"
             country shouldEqual Country.FRANCE
         }
+    }
+
+    @Test
+    fun testGetExplorer() {
+        val dao = MapExplorerDao()
+
+        //create
+        val explorer = Explorer(name = "Christopher Columbus", country = Country.ITALIA,
+                birthDate = LocalDate.of(1451, 10, 31), gender = Gender.MALE)
+        val id = dao.createOrUpdateExplorer(explorer)
+
+        id shouldNotEqual null
+
+        //get
+        val retrievedExplorer = dao.getExplorer(id)
+
+        retrievedExplorer!!.apply {
+            this.id shouldEqual id
+            name shouldEqual "Christopher Columbus"
+        }
+
+        // test get no entry
+        val noExplorer = dao.getExplorer(UUID.randomUUID())
+        noExplorer shouldEqual null
+    }
+
+    @Test
+    fun testDelete() {
+        val dao = MapExplorerDao()
+
+        //create
+        val explorer = Explorer(name = "Christopher Columbus", country = Country.ITALIA,
+                birthDate = LocalDate.of(1451, 10, 31), gender = Gender.MALE)
+        val id = dao.createOrUpdateExplorer(explorer)
+
+        id shouldNotEqual null
+
+        dao.explorers[id]!!.apply {
+            this.id shouldEqual id
+            name shouldEqual "Christopher Columbus"
+        }
+
+        //delete
+        val result = dao.deleteExplorer(id)
+
+        result shouldEqual true
+
+        dao.explorers[id] shouldEqual null
     }
 }

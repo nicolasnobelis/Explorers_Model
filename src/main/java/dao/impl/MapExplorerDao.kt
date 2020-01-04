@@ -2,7 +2,7 @@ package dao.impl
 
 import dao.ExplorerDao
 import model.Explorer
-import java.util.*
+import java.util.UUID
 
 class MapExplorerDao : ExplorerDao {
     internal val explorers = mutableMapOf<UUID, Explorer>()
@@ -19,13 +19,9 @@ class MapExplorerDao : ExplorerDao {
         return toStore.id
     }
 
-    override fun getExplorer(explorerId: UUID): Explorer {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getExplorer(explorerId: UUID): Explorer? = explorers[explorerId]?.copy()
 
-    override fun deleteExplorer(explorerId: UUID) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun deleteExplorer(explorerId: UUID): Boolean = (explorers.remove(explorerId) != null)
 
     override fun listExplorers(): List<Explorer> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
