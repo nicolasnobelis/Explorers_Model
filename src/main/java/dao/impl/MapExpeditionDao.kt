@@ -3,7 +3,7 @@ package dao.impl
 import dao.ExpeditionDao
 import model.Expedition
 import model.enums.ExpeditionStatus
-import java.util.*
+import java.util.UUID
 
 /**
  * An simple implementation of the ExpeditionDao that uses an in-memory map
@@ -17,7 +17,7 @@ class MapExpeditionDao : ExpeditionDao {
             if (id == null) {
                 copy(id = UUID.randomUUID())
             } else {
-                copy(id = expedition.id)
+                copy()
             }
         }
         expeditions[toStore.id!!] = toStore

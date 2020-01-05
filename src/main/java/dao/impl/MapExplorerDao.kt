@@ -12,7 +12,7 @@ class MapExplorerDao : ExplorerDao {
             if (id == null) {
                 copy(id = UUID.randomUUID())
             } else {
-                copy(id = explorer.id)
+                copy()
             }
         }
         explorers[toStore.id!!] = toStore
@@ -23,7 +23,5 @@ class MapExplorerDao : ExplorerDao {
 
     override fun deleteExplorer(explorerId: UUID): Boolean = (explorers.remove(explorerId) != null)
 
-    override fun listExplorers(): List<Explorer> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun listExplorers(): List<Explorer> = explorers.values.map { it.copy() }
 }

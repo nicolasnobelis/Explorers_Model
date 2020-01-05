@@ -3,9 +3,9 @@ package model
 import model.enums.Country
 import model.enums.ExpeditionStatus
 import java.time.LocalDate
-import java.util.*
+import java.util.UUID
 
-// an expedition : object which encompass other sub object
+// an expedition : object which encompass other sub objects
 // TODO add JAXB annotations to be able to serialize it as JSON
 data class Expedition(
         val id: UUID? = null,
