@@ -19,15 +19,9 @@ class MapShipDao : ShipDao {
         return toStore.id
     }
 
-    override fun getShip(shipId: UUID) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getShip(shipId: UUID): Ship? = ships[shipId]?.copy()
 
-    override fun deleteShip(shipId: UUID) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun deleteShip(shipId: UUID): Boolean = (ships.remove(shipId) != null)
 
-    override fun listShips(): List<Ship> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun listShips(): List<Ship> = ships.values.map { it.copy() }
 }
