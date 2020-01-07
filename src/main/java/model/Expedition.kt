@@ -10,8 +10,8 @@ import java.util.UUID
 data class Expedition(
         val id: UUID? = null,
         val name: String,
-        val armada: List<Ship> = mutableListOf(),
-        val explorers: List<Explorer> = mutableListOf(),
+        val ships: MutableList<Ship> = mutableListOf(),
+        val explorers: MutableList<Explorer> = mutableListOf(),
         val country: Country,
         val budget: Long = 0,
         val startDate: LocalDate,
