@@ -1,7 +1,7 @@
 package rest
 
 import model.Explorer
-import java.util.*
+import java.util.UUID
 import javax.ws.rs.Consumes
 import javax.ws.rs.GET
 import javax.ws.rs.POST
@@ -21,11 +21,11 @@ interface ExplorerService {
     @GET
     @Path("/explorer/{explorerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getExplorer(@PathParam("explorerId") explorerId: UUID): Explorer
+    fun getExplorer(@PathParam("explorerId") explorerId: UUID): Explorer?
 
     @GET
     @Path("/explorer/{explorerId}/delete")
-    fun deleteExplorer(@PathParam("explorerId") explorerId: UUID)
+    fun deleteExplorer(@PathParam("explorerId") explorerId: UUID) : Boolean
 
     @GET
     @Path("/explorer/list")
