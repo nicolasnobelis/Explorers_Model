@@ -3,7 +3,7 @@ package dao.impl
 import dao.ExpeditionDao
 import model.Expedition
 import model.enums.ExpeditionStatus
-import java.util.UUID
+import java.util.*
 
 /**
  * An simple implementation of the ExpeditionDao that uses an in-memory map
@@ -20,8 +20,10 @@ class MapExpeditionDao : ExpeditionDao {
                 copy()
             }
         }
-        expeditions[toStore.id!!] = toStore
-        return toStore.id
+        toStore.apply {
+            expeditions[id!!] = this
+            return id!!
+        }
     }
 
     override fun getExpedition(expeditionId: UUID): Expedition? = expeditions[expeditionId]?.copy()

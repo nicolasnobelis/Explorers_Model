@@ -2,7 +2,7 @@ package dao.impl
 
 import dao.ExplorerDao
 import model.Explorer
-import java.util.UUID
+import java.util.*
 
 class MapExplorerDao : ExplorerDao {
     internal val explorers = mutableMapOf<UUID, Explorer>()
@@ -15,8 +15,10 @@ class MapExplorerDao : ExplorerDao {
                 copy()
             }
         }
-        explorers[toStore.id!!] = toStore
-        return toStore.id
+        toStore.apply {
+            explorers[id!!] = this
+            return id!!
+        }
     }
 
     override fun getExplorer(explorerId: UUID): Explorer? = explorers[explorerId]?.copy()

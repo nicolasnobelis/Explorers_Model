@@ -2,7 +2,7 @@ package dao.impl
 
 import dao.ShipDao
 import model.Ship
-import java.util.UUID
+import java.util.*
 
 class MapShipDao : ShipDao {
     internal val ships = mutableMapOf<UUID, Ship>()
@@ -15,8 +15,10 @@ class MapShipDao : ShipDao {
                 copy()
             }
         }
-        ships[toStore.id!!] = toStore
-        return toStore.id
+        toStore.apply {
+            ships[id!!] = this
+            return id!!
+        }
     }
 
     override fun getShip(shipId: UUID): Ship? = ships[shipId]?.copy()
